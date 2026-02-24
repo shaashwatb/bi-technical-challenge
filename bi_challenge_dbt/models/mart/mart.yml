@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: mart_q1_customers_today
+    description: "number of customers until today"
+    columns:
+      - name: customers_today
+        tests: [not_null]
+
+  - name: mart_q2_acv
+    description: "average amount of cloed-won deals."
+    columns:
+      - name: acv
+        tests: [not_null]
+
+  - name: mart_q3_user_retention
+    description: "After using product, how many users come back on 7th and 30th day"
+    columns:
+      - name: cohort_date
+        tests: [not_null]
+      - name: cohort_size
+        tests: [not_null]
+
+  - name: mart_bonus_event_funnel
+    description: "reached funnel step based on backend events"
+    columns:
+      - name: step
+        tests:
+          - accepted_values:
+              values:
+                - "Search Created / Updated"
+                - "Search Executed"
+                - "Result Appraised"
+                - "Full Text Viewed"
+                - "Exported Results"
+      - name: users_reached
+        tests: [not_null]
+      - name: pct_of_users
+        tests: [not_null]

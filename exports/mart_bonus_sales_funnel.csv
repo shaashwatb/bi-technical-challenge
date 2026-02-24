@@ -1,0 +1,7 @@
+stage,step_order,deals_reached,previous_stage_deals,dropoff_rate
+Pre-Pitch,1,69,,
+Pitching,2,75,69,-0.08695652173913038
+Product Testing,3,64,75,0.1466666666666666
+Price Offering,4,59,64,0.078125
+Contract Negotiation,5,55,59,0.06779661016949157
+Closed Won,6,33,55,0.4

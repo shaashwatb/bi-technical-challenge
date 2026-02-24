@@ -1,0 +1,66 @@
+version: 2
+
+models:
+  - name: stg_backend_events
+    description: "Cleaned backend event stream."
+    columns:
+      - name: event_id
+        description: "Unique event identifier."
+        tests: [not_null, unique]
+      - name: event_name
+        description: "Event type name."
+        tests: [not_null]
+      - name: event_ts
+        description: "Event timestamp."
+        tests: [not_null]
+      - name: user_id
+        description: "Product user identifier."
+      - name: organization_id
+        description: "Product organization identifier (UUID)."
+
+  - name: stg_hubspot_companies
+    description: "Cleaned HubSpot companies."
+    columns:
+      - name: company_id
+        description: "HubSpot company id."
+        tests: [not_null, unique]
+      - name: company_name
+        description: "Company name."
+
+  - name: stg_hubspot_contacts
+    description: "Cleaned HubSpot contacts."
+    columns:
+      - name: contact_id
+        description: "HubSpot contact id"
+        tests: [not_null, unique]
+      - name: company_id
+        description: "HubSpot company id the contact is associted with."
+        tests:
+          - relationships:
+              to: ref('stg_hubspot_companies')
+              field: company_id
+      - name: email
+        description: "Contact email (lowercased)."
+
+  - name: stg_hubspot_deals
+    description: "Cleaned HubSpot deals."
+    columns:
+      - name: deal_id
+        description: "HubSpot deal id."
+        tests: [not_null, unique]
+      - name: company_id
+        description: "HubSpot company id the deal is associated with."
+        tests:
+          - relationships:
+              to: ref('stg_hubspot_companies')
+              field: company_id
+      - name: is_closed
+        description: "Deal is closed."
+        tests:
+          - accepted_values:
+              values: [true, false]
+      - name: is_closed_won
+        description: "Deal is closed-won."
+        tests:
+          - accepted_values:
+              values: [true, false]

@@ -1,4 +1,6 @@
+# ======================
 # Python
+# ======================
 __pycache__/
 *.py[cod]
 *$py.class
@@ -8,27 +10,50 @@ dist/
 build/
 *.egg
 
+# ======================
 # Virtual environments
+# ======================
 .venv/
 venv/
 env/
 
-# IDE
+# ======================
+# dbt
+# ======================
+target/
+logs/
+dbt_packages/
+
+# ======================
+# DuckDB
+# ======================
+*.duckdb
+
+# ======================
+# Jupyter
+# ======================
+.ipynb_checkpoints/
+
+# ======================
+# IDE / Editors
+# ======================
 .idea/
 .vscode/
 *.swp
 *.swo
 *~
 
-# OS
+# ======================
+# OS files
+# ======================
 .DS_Store
 Thumbs.db
 
-# Jupyter
-.ipynb_checkpoints/
-
-# Data generation script (not needed by candidates)
+# ======================
+# Optional / Project-specific
+# ======================
+# Data generation scripts (not part of solution)
 generate_data.py
 
-# Internal answers (not for candidates)
+# Internal answers or scratch work
 answers/
